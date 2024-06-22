@@ -10,20 +10,17 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
 
       - name: docker login
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
       - name: Build the Docker image
         run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s
 
-      - name: Tag the Docker image
-        run: docker tag $DOCKERHUB_USERNAME/node-argo-k8s $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::5}
-
       - name: Push the Docker image
-        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:$GITHUB_SHA
+        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s
