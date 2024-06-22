@@ -43,3 +43,6 @@ jobs:
           targetBranch: main
           createPR: true
           message: 'Updated the image tag to ${GITHUB_SHA::7}'
+          commitUserName: github-actions[bot]
+          commitUserEmail: 41898282+github-actions[bot]@users.noreply.github.com
+          masterBranchName: main
