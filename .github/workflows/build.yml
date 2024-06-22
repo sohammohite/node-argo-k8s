@@ -22,9 +22,9 @@ jobs:
       - name: Build the Docker image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::8}
+        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
 
       - name: Push the Docker image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::8}
+        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}

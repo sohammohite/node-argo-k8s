@@ -1,0 +1,15 @@
+appName: nodeapp
+
+serviceName: nodeapp-service
+
+serviceType: NodePort
+
+port: 3000
+
+nodePort: 30000
+
+namespace: default
+
+image:
+  name: sohamm09/node-argo-k8s
+  tag: 1cf228c3
