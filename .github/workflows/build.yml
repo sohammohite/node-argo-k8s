@@ -33,7 +33,11 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
 
-      - name: Update values.yaml
-        run: |
-          sed -i 's/latest/'"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml 
-#sed -i 's/tag:.*/tag: '"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml
+      - name: Update the Docker image tag in the values.yaml
+        uses: OpsVerseIO/image-updater-action@0.1.0
+        with:
+          valuesFile: ./node-argo-k8s-helm/values.yaml
+          propertyPath: 'image.tag'
+          value: ${GITHUB_SHA::7}
+          branch: main
+          message: 'Updated the image tag to ${GITHUB_SHA::7}'
