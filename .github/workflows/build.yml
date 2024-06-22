@@ -43,9 +43,9 @@ jobs:
           valueFile: ./node-argo-k8s-helm/values.yaml
           propertyPath: 'image.tag'
           value: ${GITHUB_SHA::7}
-          branch: main/${GITHUB_SHA::7}
-          targetBranch: main
-          createPR: true
+          #branch: main/${GITHUB_SHA::7}
+          branch: main
+          #createPR: true
           message: 'Updated the image tag to ${GITHUB_SHA::7}'
           commitUserName: github-actions[bot]
           commitUserEmail: 41898282+github-actions[bot]@users.noreply.github.com
