@@ -36,7 +36,7 @@ jobs:
       - name: Update the Docker image tag in the values.yaml
         uses: OpsVerseIO/image-updater-action@0.1.0
         with:
-          valuesFile: ./node-argo-k8s-helm/values.yaml
+          valueFile: ./node-argo-k8s-helm/values.yaml
           propertyPath: 'image.tag'
           value: ${GITHUB_SHA::7}
           branch: main
