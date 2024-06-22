@@ -9,18 +9,22 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
-    environment:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    runs-on: ubuntu-latest    
     steps:
       - uses: actions/checkout@v4
 
       - name: docker login
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
       - name: Build the Docker image
-        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::8}
 
       - name: Push the Docker image
-        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::8}
