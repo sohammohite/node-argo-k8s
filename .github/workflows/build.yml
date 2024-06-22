@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-    
+
+      - name: set Docker Tag
+        run: export DOCKER_TAG=${GITHUB_SHA::6}
+
       - name: docker login
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -20,7 +23,7 @@ jobs:
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
       - name: Build the Docker image
-        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:$GITHUB_SHA
+        run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:$DOCKER_TAG
 
       - name: Push the Docker image
         run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:$GITHUB_SHA
