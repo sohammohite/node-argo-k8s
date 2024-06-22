@@ -43,7 +43,7 @@ jobs:
           valueFile: ./node-argo-k8s-helm/values.yaml
           propertyPath: 'image.tag'
           value: ${GITHUB_SHA::7}
-          branch: 'main/${GITHUB_SHA::7}'
+          branch: main/21
           targetBranch: main
           createPR: true
           message: 'Updated the image tag to ${GITHUB_SHA::7}'
