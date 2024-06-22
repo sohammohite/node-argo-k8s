@@ -35,4 +35,5 @@ jobs:
 
       - name: Update values.yaml
         run: |
-          sed -i 's/tag:.*/tag: '"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml
+          sed -i 's/latest/'"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml 
+#sed -i 's/tag:.*/tag: '"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml
