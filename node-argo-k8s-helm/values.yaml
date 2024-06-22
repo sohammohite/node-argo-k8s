@@ -12,4 +12,4 @@ namespace: default
 
 image:
   name: sohamm09/node-argo-k8s
-  tag: 666fe1a
+  tag: latest

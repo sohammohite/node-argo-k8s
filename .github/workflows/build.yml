@@ -17,7 +17,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: docker login
-        working-directory: ./source-code
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -30,7 +29,10 @@ jobs:
         run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
 
       - name: Push the Docker image
-        working-directory: ./source-code
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
+
+      - name: Update values.yaml
+        run: |
+          sed -i 's/tag:.*/tag: '"${GITHUB_SHA::7}"'/' node-argo-k8s-helm/values.yaml
