@@ -17,7 +17,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: docker login -U $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+        run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
       - name: Build the Docker image
         run: docker build . -f Dockerfile -t $DOCKERHUB_USERNAME/node-argo-k8s:$GITHUB_SHA
