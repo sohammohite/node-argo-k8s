@@ -34,7 +34,7 @@ jobs:
         run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
 
       - name: Update the Docker image tag in the values.yaml
-        uses: OpsVerseIO/image-updater-action@0.1.0
+        uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: ./node-argo-k8s-helm/values.yaml
           propertyPath: 'image.tag'
