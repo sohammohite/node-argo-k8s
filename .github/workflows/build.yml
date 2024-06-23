@@ -43,4 +43,5 @@ jobs:
           GIT_SHA: ${GITHUB_SHA::7}
         run: |
           pip3 install -r requirements.txt
+          ls -la
           python3 update-values.py
