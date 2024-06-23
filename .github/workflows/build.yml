@@ -37,12 +37,18 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $DOCKERHUB_USERNAME/node-argo-k8s:${GITHUB_SHA::7}
 
+
+      - name: Set up Python
+        uses: actions/setup-python@v5 
+        with:
+          python-version: '3.10'
+      
       - name: Update values.yaml
         env:
           GIT_TOKEN: ${{ secrets.TOKEN }}
           GIT_SHA: ${GITHUB_SHA::7}
         run: |
-          pip3 install -r requirements.txt
+          pip install -r requirements.txt
           ls -la
           pwd
-          python3 node-argo-k8s/update-values.py
+          python update-values.py
