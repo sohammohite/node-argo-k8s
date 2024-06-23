@@ -28,4 +28,5 @@ file = open("values.yaml", "w")
 yaml.dump(data, file)
 file.close()
 
-repo.update_file("node-argo-k8s-helm/values.yaml", "Updated values.yaml", open("values.yaml", "r").read(), contents.sha)
+commit_msg = "Updated values.yaml for " + github_sha
+repo.update_file("node-argo-k8s-helm/values.yaml", commit_msg, open("values.yaml", "r").read(), contents.sha)
