@@ -45,4 +45,4 @@ jobs:
           pip3 install -r requirements.txt
           ls -la
           pwd
-          python3 /home/runner/work/node-argo-k8s/node-argo-k8s/update-values.py
+          python update-values.py
