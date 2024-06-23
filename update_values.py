@@ -5,7 +5,9 @@ import os
 import yaml
 
 token = os.environ.get('GIT_TOKEN')
-github_sha = os.environ.get('GIT_SHA')
+sha = os.environ.get('GITHUB_SHA')
+
+github_sha = sha[0:7]
 
 print(token)
 auth = Auth.Token(str(token))
