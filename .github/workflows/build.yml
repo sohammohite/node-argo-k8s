@@ -43,6 +43,4 @@ jobs:
           GIT_SHA: ${GITHUB_SHA::7}
         run: |
           pip3 install -r requirements.txt
-          pwd
-          ls -la /home/runner/work/node-argo-k8s/node-argo-k8s/
-          python3 update-values.py
+          python3 update_values.py
