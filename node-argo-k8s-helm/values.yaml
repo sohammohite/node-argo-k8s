@@ -1,7 +1,7 @@
 appName: nodeapp
 image:
   name: sohamm09/node-argo-k8s
-  tag: ${GITHUB_SHA::7}
+  tag: adb668b
 namespace: default
 nodePort: 30000
 port: 3000
