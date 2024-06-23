@@ -1,7 +1,7 @@
 appName: nodeapp
 image:
   name: sohamm09/node-argo-k8s
-  tag: adb668b
+  tag: 25c2208
 namespace: default
 nodePort: 30000
 port: 3000
